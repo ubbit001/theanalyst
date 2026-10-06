@@ -27,7 +27,7 @@ const portfolioData = {
   linkedin: "https://www.linkedin.com/in/ubong-ebong-016931175",
   github: "https://github.com/UbongAlanpoza001",
   resume: "assets/documents/Prince-Ubong-Ebong-CV.pdf",
-  resumeText: "Download CV",
+  resumeText: "View CV",
   formspreeEndpoint: "https://formspree.io/f/xnpjjnyg",
 
   skills: {
