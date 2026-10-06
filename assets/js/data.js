@@ -21,7 +21,7 @@ const portfolioData = {
     { value: "PM", label: "Project Management" },
     { value: "Data", label: "Data & process improvement" }
   ],
-  profileImage: "assets/images/profile.jpg",
+  profileImage: "assets/images/avatar.jpg",
   email: "princemichael612@gmail.com", // Your contact email. Leave empty to show a placeholder.
   phone: "", // Optional. Leave empty to hide.
   linkedin: "https://www.linkedin.com/in/ubong-ebong-016931175",
@@ -111,7 +111,7 @@ const portfolioData = {
       recommendations: ["Maintain a centralised source of event information and updates.", "Use structured customer feedback to identify recurring issues and improvement opportunities.", "Monitor customer interactions and satisfaction trends to support continuous improvement."],
       outcome: "Functional portfolio project demonstrating the ability to translate customer and business requirements into a practical digital solution.",
       impact: "Demonstrates how Business Analysis, Project Management, website design, and customer-experience thinking can be combined to create a practical business solution.",
-      image: "assets/images/project-01.jpg", imageAlt: "Event Tracking & Customer Experience Website project"
+      image: "assets/images/project-01.svg", imageAlt: "Event Tracking & Customer Experience Website project"
     },
     {
       id: "lms-process-tracker", name: "LMS Process & Participant Journey Tracker",
@@ -128,7 +128,7 @@ const portfolioData = {
       recommendations: ["Maintain a centralised participant tracking structure.", "Use clearly defined status categories and operational KPIs.", "Create clearer guidance for recurring participant issues.", "Use regular reporting to identify process gaps and improvement opportunities."],
       outcome: "Structured Business Analysis and data-improvement case study demonstrating how operational data can be translated into process visibility and actionable recommendations.",
       impact: "Improves operational visibility and supports consistent participant support, follow-up, and process improvement.",
-      image: "assets/images/project-02.jpg", imageAlt: "LMS Process & Participant Journey Tracker project"
+      image: "assets/images/project-02.svg", imageAlt: "LMS Process & Participant Journey Tracker project"
     },
     {
       id: "sales-analysis", name: "Sales Performance & Decision Support Analysis",
@@ -145,7 +145,7 @@ const portfolioData = {
       recommendations: ["Monitor core sales KPIs regularly.", "Investigate significant changes in sales performance and customer behaviour.", "Use dashboard reporting for management reviews.", "Link sales insights to commercial and operational decisions."],
       outcome: "Complete data-analysis case study from raw data through SQL and visualisation to business recommendations.",
       impact: "Provides decision-support insight to help stakeholders understand sales performance and prioritise areas for investigation.",
-      image: "assets/images/project-03.jpg", imageAlt: "Sales Performance & Decision Support Analysis project"
+      image: "assets/images/project-03.svg", imageAlt: "Sales Performance & Decision Support Analysis project"
     },
     {
       id: "process-improvement", name: "Business Process Improvement & Workflow Optimisation",
@@ -162,7 +162,7 @@ const portfolioData = {
       recommendations: ["Document SOPs around the improved workflow.", "Clearly define ownership and responsibilities.", "Use process performance indicators.", "Review the process periodically for further improvement."],
       outcome: "Complete process-improvement case demonstrating current-state analysis, stakeholder requirements, gap identification, future-state design, and implementation planning.",
       impact: "Demonstrates the ability to turn an operational problem into a structured and measurable improvement approach.",
-      image: "assets/images/project-04.jpg", imageAlt: "Business Process Improvement & Workflow Optimisation project"
+      image: "assets/images/project-04.svg", imageAlt: "Business Process Improvement & Workflow Optimisation project"
     },
     {
       id: "skills-acquisition", name: "Skills Acquisition Programme & Event Operations Improvement",
@@ -179,7 +179,7 @@ const portfolioData = {
       recommendations: ["Maintain project plans and responsibility matrices.", "Establish clear communication and follow-up processes.", "Document repeatable event-management processes.", "Review operational lessons after major activities."],
       outcome: "Real professional case study demonstrating Project Management, IT Strategic Analysis, stakeholder coordination, and process improvement within a skills-acquisition environment.",
       impact: "Supported structured programme coordination, event operations, stakeholder engagement, and delivery processes.",
-      image: "assets/images/project-05.jpg", imageAlt: "Skills Acquisition Programme & Event Operations Improvement project"
+      image: "assets/images/project-05.svg", imageAlt: "Skills Acquisition Programme & Event Operations Improvement project"
     },
     {
       id: "participant-support", name: "Participant Support & Service Journey Improvement",
@@ -196,7 +196,7 @@ const portfolioData = {
       recommendations: ["Develop a clear FAQ and booking guide so participants understand preparation and booking expectations.", "Explore allocating support time based on the complexity or weight of the request.", "Provide clearer expectations on what can reasonably be handled within a support session.", "Track recurring support categories to identify opportunities for self-service guidance and process improvement."],
       outcome: "Real-world Business Analysis and service-improvement case demonstrating how participant feedback, operational observations, and issue analysis can be converted into practical process recommendations.",
       impact: "Supports a clearer and more structured participant support experience while helping the team identify recurring issues and improve support-time allocation.",
-      image: "assets/images/project-06.jpg", imageAlt: "Participant Support & Service Journey Improvement project"
+      image: "assets/images/project-06.svg", imageAlt: "Participant Support & Service Journey Improvement project"
     }
   ]
 };

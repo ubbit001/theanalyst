@@ -11,18 +11,19 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Prince Ubong Ebong | IT Business Analyst | Project Manager | Data Improvement Analyst">
 <meta property="og:description" content="Business analysis, process improvement, data-driven decision making, and digital solutions.">
-<meta property="og:image" content="assets/images/profile.jpg">
+<meta property="og:image" content="https://ubbit001.github.io/theanalyst/assets/images/avatar.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prince Ubong Ebong | IT Business Analyst">
 <meta name="twitter:description" content="Business analysis, process improvement, data-driven decision making, and digital solutions.">
 <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
+<div id="progress"></div><div id="glow"></div>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site">
   <div class="wrap nav">
@@ -47,24 +48,28 @@
 
 <main id="main">
 <section class="hero" id="home">
+  <span class="blob b1"></span><span class="blob b2"></span>
   <div class="wrap hero-grid">
     <div>
-      <h1 data-bind="name">Prince Ubong Ebong</h1>
+      <div class="status-pill"><i></i>Open to opportunities · Lagos, Nigeria</div>
+      <h1 id="hero-name" data-bind="name">Prince Ubong Ebong</h1>
       <p class="role" data-bind="title">IT Business Analyst | Project Manager | Data Improvement Analyst</p>
-      <p class="tag" data-bind="tagline"></p>
-      <p class="desc">I turn business problems into clear requirements, better processes, and data-backed recommendations, working with stakeholders across business, project delivery, and technology.</p>
+      <p class="typed-line">I turn business problems into <span class="typed" id="typedWord"></span><span class="cursor">|</span></p>
+      <p class="desc">Working with stakeholders across business, project delivery, and technology to bring clarity to requirements, structure to processes, and evidence to decisions.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">View Projects</a>
         <a class="btn" data-bind="resume" href="#" download><span data-resume-text>Download CV</span></a>
       </div>
-      <div class="social"><a data-bind="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a><a data-bind="github" href="#" target="_blank" rel="noopener">GitHub</a><span class="muted" data-bind="location"></span></div>
-      <div class="themes" aria-label="Focus areas">
-        <span class="chip">Business Analysis</span><span class="chip">Process Improvement</span><span class="chip">Data Analysis</span><span class="chip">Business Intelligence</span><span class="chip">Stakeholder Management</span><span class="chip">Project Delivery</span>
-      </div>
+      <div class="social"><a data-bind="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a><a data-bind="github" href="#" target="_blank" rel="noopener">GitHub</a></div>
     </div>
-    <img id="profile-img" class="photo" src="assets/images/profile.jpg" alt="Portrait of Prince Ubong Ebong in a navy suit" width="900" height="1125">
+    <div class="avatar-wrap" id="avatar">
+      <div class="avatar-ring"></div>
+      <img id="profile-img" class="photo" src="assets/images/avatar.jpg" alt="Portrait of Prince Ubong Ebong in a navy suit" width="560" height="560">
+      <span class="tag-float t1">Business Analysis</span><span class="tag-float t2">Data &amp; BI</span><span class="tag-float t3">Project Delivery</span>
+    </div>
   </div>
 </section>
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
 
 <section id="about"><div class="wrap">
   <h2>About</h2>

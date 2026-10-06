@@ -53,7 +53,7 @@
     $("#skill-groups").innerHTML = Object.keys(d.skills).map(g => '<div class="card reveal"><h3>' + esc(g) + "</h3>" + chips(d.skills[g]) + "</div>").join("");
     $("#project-grid").innerHTML = d.projects.map(p => `
       <article class="card proj reveal">
-        <img src="${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy" width="1200" height="750">
+        <div class="thumb"><img src="${esc(p.image)}" alt="${esc(p.imageAlt)}" loading="lazy" width="800" height="500"></div>
         <div class="proj-body">
           <div>${chips(p.tags, "accent")}</div>
           <h3>${esc(p.name)}</h3>
@@ -62,7 +62,7 @@
           <a class="btn" href="projects/case-study.html?id=${esc(p.id)}" aria-label="View case study: ${esc(p.name)}">View Case Study</a>
         </div>
       </article>`).join("");
-    const img = $("#profile-img"); if (img) img.src = d.profileImage;
+    
     const em = $("#email-line");
     em.innerHTML = d.email ? '<a href="mailto:' + esc(d.email) + '">' + esc(d.email) + "</a>" : '<span class="placeholder">[ADD PROFESSIONAL EMAIL]</span>';
     if (d.phone) $("#phone-line").innerHTML = '<a href="tel:' + esc(d.phone.replace(/\s/g, "")) + '">' + esc(d.phone) + "</a>"; else $("#phone-item").remove();
@@ -90,7 +90,7 @@
       csRoot.innerHTML = `
         <div class="cs-hero"><a href="../index.html#projects">← All projects</a>
           <h1>${esc(p.name)}</h1><div>${chips(p.tags, "accent")}</div></div>
-        <img class="cs-img" src="../${esc(p.image)}" alt="${esc(p.imageAlt)}" width="1200" height="600">
+        <img class="cs-img" src="../${esc(p.image)}" alt="${esc(p.imageAlt)}" width="760" height="260">
         <ol class="flow" aria-label="Case study sections">${steps.map((s, i) => '<li><a href="#' + s[0] + '">' + (i + 1) + ". " + s[1] + "</a></li>").join("")}</ol>
         ${steps.map(s => '<section class="step" id="' + s[0] + '" style="padding-block:1.5rem"><h2>' + s[1] + "</h2><div>" + s[2] + "</div></section>").join("")}
         <div class="cs-nav">${prev ? '<a class="btn" href="?id=' + prev.id + '">← Previous</a>' : "<span></span>"}${next ? '<a class="btn" href="?id=' + next.id + '">Next project →</a>' : "<span></span>"}</div>`;
@@ -138,4 +138,63 @@
     links.forEach(a => { const s = $(a.getAttribute("href")); if (s) so.observe(s); });
   }
   const y = $("#year"); if (y) y.textContent = new Date().getFullYear();
+
+  /* ---------- Dynamic effects ---------- */
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Hero name: letters rise in one by one */
+  const nm = $("#hero-name");
+  if (nm) { const t = nm.textContent.trim(); nm.setAttribute("aria-label", t); let n = 0;
+    nm.innerHTML = t.split(/\s+/).map(w => '<span class="w" aria-hidden="true">' + [...w].map(c => '<span class="ch" style="animation-delay:' + (n++ * 45) + 'ms">' + esc(c) + "</span>").join("") + "</span>").join(" "); }
+
+  /* Fit the name on one line: measure it, then scale the font to the column */
+  function fitName() {
+    if (!nm) return;
+    const box = nm.parentElement, avail = box.clientWidth; if (!avail) return;
+    nm.style.fontSize = ""; const max = parseFloat(getComputedStyle(nm).fontSize);
+    nm.style.display = "inline-block"; nm.style.fontSize = max + "px";
+    const w = nm.offsetWidth; nm.style.display = "";
+    nm.style.fontSize = Math.max(18, Math.min(max, max * (avail / w) * .97)) + "px";
+  }
+  fitName(); addEventListener("resize", fitName); addEventListener("load", fitName);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitName);
+
+  /* Typewriter: types, holds, deletes, next phrase */
+  const tw = $("#typedWord");
+  if (tw) {
+    const words = ["clear requirements.", "better processes.", "smarter decisions.", "working solutions.", "measurable results."];
+    if (calm) tw.textContent = words[0];
+    else { let w = 0, c = 0, del = false;
+      (function tick() {
+        const word = words[w];
+        c += del ? -1 : 1; tw.textContent = word.slice(0, c);
+        let wait = del ? 35 : 75;
+        if (!del && c === word.length) { del = true; wait = 1500; }
+        else if (del && c === 0) { del = false; w = (w + 1) % words.length; wait = 350; }
+        setTimeout(tick, wait);
+      })(); }
+  }
+
+  /* Skills marquee */
+  const tr = $("#track");
+  if (tr) { const k = ["Business Analysis", "Requirements Gathering", "Process Mapping", "SQL", "Power BI", "Excel", "Agile & Scrum", "Stakeholder Management", "Gap Analysis", "User Stories", "Jira", "Dashboards", "Root Cause Analysis", "UAT Support"]; const s = k.map(x => "<span>" + x + "</span>").join(""); tr.innerHTML = s + s; }
+
+  /* Scroll progress bar + cursor glow */
+  const bar = $("#progress"), glow = $("#glow");
+  addEventListener("scroll", () => { if (bar) bar.style.width = (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100) + "%"; }, { passive: true });
+  if (glow && !calm) addEventListener("pointermove", e => { glow.style.opacity = 1; glow.style.left = e.clientX + "px"; glow.style.top = e.clientY + "px"; });
+
+  /* Staggered reveal + animated headings + stat count-up */
+  document.querySelectorAll(".reveal").forEach((el, i) => el.style.setProperty("--d", (i % 3) * .1 + "s"));
+  document.querySelectorAll("h2").forEach(h => { if (!("IntersectionObserver" in window)) return h.classList.add("in"); new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { h.classList.add("in"); o.disconnect(); } })).observe(h); });
+  document.querySelectorAll(".stat b").forEach(b => {
+    const m = b.textContent.match(/^(\d+)(\+?)$/); if (!m || calm || !("IntersectionObserver" in window)) return;
+    const end = +m[1]; new IntersectionObserver((es, o) => es.forEach(e => { if (!e.isIntersecting) return; o.disconnect(); const t0 = performance.now(); (function f(t) { const p = Math.min(1, (t - t0) / 1200); b.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + m[2]; if (p < 1) requestAnimationFrame(f); })(t0); })).observe(b);
+  });
+
+  /* 3D tilt on project cards */
+  if (!calm && matchMedia("(hover:hover)").matches) document.querySelectorAll(".proj").forEach(c => {
+    c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.transform = "perspective(800px) rotateY(" + x * 7 + "deg) rotateX(" + -y * 7 + "deg) translateY(-4px)"; });
+    c.addEventListener("pointerleave", () => c.style.transform = "");
+  });
 })();
